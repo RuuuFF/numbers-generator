@@ -1,0 +1,121 @@
+.container {
+  width: 90vw;
+  max-width: 40rem;
+}
+
+.container h1 {
+  font-size: 3.2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.display-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2.6rem;
+}
+
+.display-container :is(.display-title, .display-message) {
+  text-align: center;
+}
+
+.display-title {
+  font-size: 2rem;
+}
+
+.display-list-container {
+  font-size: 2.6rem;
+}
+
+.display-list {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.display-list li {
+  min-width: 50px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+
+  /* Gradiente por: https://uigradients.com/ ❤ */
+  background: #0575e6; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #021b79,
+    #0575e6
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #021b79,
+    #0575e6
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.display-message {
+  font-size: 1.4rem;
+}
+
+.range-container {
+  display: flex;
+  gap: 1.6rem;
+  margin-bottom: 2rem;
+}
+
+.range-input-field {
+  flex: 1;
+  font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+}
+display .range-input-field label {
+  letter-spacing: 0.5px;
+}
+
+.range-input-field input {
+  font-size: 1.8rem;
+  width: 100%;
+  margin-top: 0.8rem;
+  border: 0;
+  border-radius: 0;
+  padding: 0.6rem;
+}
+
+.input-container {
+  margin-bottom: 2rem;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6rem;
+}
+
+.input-field label {
+  letter-spacing: 0.5px;
+}
+
+.input-field input {
+  font-size: 1.8rem;
+  width: 100%;
+  margin-top: 0.8rem;
+  border: 0;
+  border-radius: 0;
+  padding: 0.6rem;
+}
+
+.button-container button {
+  width: 100%;
+  padding: 0.8rem 0;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
