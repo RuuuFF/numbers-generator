@@ -1,5 +1,5 @@
 const Input = props => {
-  const { raffles, updateRaffles, updateDisplay } = props.list
+  const { raffles, updateRaffles, inputKeyEvents } = props.list
 
   return (
     <div className="input-container">
@@ -8,7 +8,7 @@ const Input = props => {
         <input
           value={raffles}
           onChange={updateRaffles}
-          onKeyDown={event => event.key === 'Enter' ? updateDisplay() : ''}
+          onKeyDown={event => inputKeyEvents(event)}
         />
       </div>
     </div>

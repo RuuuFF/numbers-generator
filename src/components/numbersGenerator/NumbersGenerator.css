@@ -75,7 +75,8 @@
   display: flex;
   flex-direction: column;
 }
-display .range-input-field label {
+
+.range-input-field label {
   letter-spacing: 0.5px;
 }
 
@@ -113,9 +114,38 @@ display .range-input-field label {
 
 .button-container button {
   width: 100%;
-  padding: 0.8rem 0;
+  padding: 1rem 0;
+  border: 0;
+  color: #fff;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
   cursor: pointer;
+
+  /* Gradiente por: https://uigradients.com/ ❤ */
+  background: #0575e6; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to top,
+    #021b79,
+    #0575e6,
+    #021b79
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #021b79,
+    #0575e6,
+    #021b79
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  background-position: top;
+  background-size: 100% 200%;
+  transition: background-position 0.5s ease;
+}
+
+.button-container button:hover {
+  background-position: bottom;
+}
+
+.button-container button:active {
+  transform: scale(0.99);
 }

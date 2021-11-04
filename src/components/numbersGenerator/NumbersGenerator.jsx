@@ -14,36 +14,6 @@ const NumbersGenerator = props => {
   const [ max, setMax ] = useState(props.max || 100)
   const [ message, setMessage ] = useState("...")
 
-  const generateNums = () => {
-    const generatedNums = []
-    let iteration = 0
-    let calls = 0
-    
-    while (iteration < raffles) {
-      const num = Math.round(Math.random() * (max - min)) + min
-      
-      if (!generatedNums.includes(num)) {
-        generatedNums.push(num)
-        iteration++
-        calls++
-      } else {
-        calls++
-        continue
-      }
-    }
-    
-    setMessage(`A função precisou de ${calls} loops para chegar neste resultado.`)
-    return generatedNums.sort((a, b) => a - b)
-  }
-
-  const styleNums = array => array.map((item, index) => <li key={index}>{ item }</li>)
-
-  const updateDisplay = () => {
-    const array = generateNums()
-    const arrayMap = styleNums(array)
-    setDisplay(arrayMap)
-  }
-
   const updateMin = event => {
     const key = Number(event.nativeEvent.data)
     const value = Number(event.target.value)
@@ -54,8 +24,8 @@ const NumbersGenerator = props => {
         setMin(max)
         setRaffles(0)
       } else if (raffles > range) {
-        setRaffles(range)
         setMin(value)
+        setRaffles(range)
       } else {
         setMin(value)
       }
@@ -65,14 +35,15 @@ const NumbersGenerator = props => {
   const updateMax = event => {
     const key = Number(event.nativeEvent.data)
     const value = Number(event.target.value)
+    const range = value - min 
 
     if (key >= 0 && key <= 9) {
       if(value <= min) {
         setMax(min)
         setRaffles(0)
-      } else if (value < raffles) {
+      } else if (range < raffles) {
         setMax(value)
-        setRaffles(value)
+        setRaffles(range)
       } else {
         setMax(value)
       }
@@ -94,14 +65,59 @@ const NumbersGenerator = props => {
       }
     }
   }
+
+  const inputKeyEvents = event => {
+    const value = Number(event.target.value)
+    const range = max - min
+
+    if (event.key === 'Enter') {
+      generateNums()
+    } else if (event.key === 'ArrowUp' && value < range) {
+      setRaffles(value + 1)
+    } else if (event.key === 'ArrowDown' && value > 0) {
+      setRaffles(value - 1)
+    }
+  }
+
+  const styleNums = array => {
+    return array
+      .sort((a, b) => a - b)
+      .map((item, index) => <li key={index}>{ item }</li>)
+  }
+
+  const updateDisplay = (array, calls) => {
+    setMessage(`A função precisou de ${calls} loops para chegar neste resultado.`)
+    setDisplay(styleNums(array))
+  }
+
+  const generateNums = () => {
+    const generatedNums = []
+    let iteration = 0
+    let calls = 0
+    
+    while (iteration < raffles) {
+      const num = Math.round(Math.random() * (max - min)) + min
+      
+      if (!generatedNums.includes(num)) {
+        generatedNums.push(num)
+        iteration++
+        calls++
+      } else {
+        calls++
+        continue
+      }
+    }
+
+    updateDisplay(generatedNums, calls)
+  }
   
   return (
     <div className="container">
       <h1>Gerador de Números</h1>
       <Display list={{ display, message }} />
       <Range list={{ min, max, updateMin, updateMax }} />
-      <Input list={{ raffles, updateRaffles, updateDisplay }} />
-      <Button updateDisplay={updateDisplay} />
+      <Input list={{ raffles, updateRaffles, inputKeyEvents }} />
+      <Button generateNums={generateNums} />
     </div>
   )
 }
