@@ -15,5 +15,5 @@ Para a função geradora utilizei o loop while, com uma condição para não hav
 
 <div align="center">
   <img alt="Numbers Generator" src="https://i.imgur.com/qb0jCPu.png" width="450px">
-  <p>Confira o resultado: <a href="https://numbers-generator-react-ruuuff.netlify.app/">Numbers Generator</a></p>
+  <p>Confira o resultado: <a href="https://numbers-generator-ruuuff.netlify.app/">Numbers Generator</a></p>
 </div>
